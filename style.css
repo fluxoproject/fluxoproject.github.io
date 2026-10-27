@@ -119,6 +119,7 @@ a{text-decoration:none; color:inherit;}
 .login-actions{display:flex; flex-direction:column; gap:12px;}
 .google-btn-container{display:flex; justify-content:center; min-height:44px;}
 .link-create-account{margin-top:6px; color:var(--blue); font-weight:600; font-size:14px;}
+.link-guest{margin-top:2px; background:none; border:0; padding:8px 12px; font:inherit; font-size:14px; font-weight:600; color:var(--text-secondary); text-decoration:underline; text-underline-offset:3px; cursor:pointer;}
 
 .btn{
   border:none; cursor:pointer; border-radius:var(--radius-md);
@@ -1437,6 +1438,8 @@ body{overscroll-behavior-y:none;}
 .screen-login .btn.btn-outline{background:rgba(255,255,255,.08); color:#f0fff5; border:1.5px solid rgba(255,255,255,.28); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border-radius:999px;}
 .screen-login .btn.btn-outline:active{background:rgba(255,255,255,.16);}
 .screen-login .link-create-account{color:#86efac; font-weight:700;}
+.screen-login .link-guest{color:rgba(220,252,231,.82);}
+.screen-login .link-guest:hover,.screen-login .link-guest:focus-visible{color:#fff;}
 .screen-login .btn-install{color:#bbf7d0; border-color:rgba(187,247,208,.55);}
 .screen-login .install-hint{color:rgba(220,252,231,.7);}
 .screen-login .google-btn-container{border-radius:999px; box-shadow:0 10px 26px rgba(0,0,0,.28);}

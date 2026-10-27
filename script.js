@@ -193,6 +193,7 @@ function clearToken() { localStorage.removeItem(TOKEN_KEY); }
 // terminava e as bolinhas giravam para sempre. O servidor gratuito "dorme" e pode levar ~1 min para acordar.
 const API_TIMEOUT_MS = 45000;
 async function api(path, { method = "GET", body, timeout = API_TIMEOUT_MS, silent = false } = {}) {
+  if (window.FluxoGuest && FluxoGuest.active()) return FluxoGuest.call(path, method, body); // modo "Entrar sem conta"
   const headers = { "Content-Type": "application/json" };
   const token = getToken();
   if (token) headers.Authorization = `Bearer ${token}`;
@@ -2390,7 +2391,7 @@ function applyUserToUI(user) {
 }
 
 async function afterLoginSuccess(token) {
-  setToken(token);
+  if (token) setToken(token);
   await refreshAll();
   applyTheme(state.preferences.theme || "light");
   localStorage.setItem(THEME_CACHE_KEY, state.preferences.theme || "light");
@@ -2399,7 +2400,19 @@ async function afterLoginSuccess(token) {
   showApp();
 }
 
+async function enterGuest() {
+  FluxoGuest.enter();
+  try {
+    await afterLoginSuccess(null);
+    showToast("Você está sem conta: os dados são de exemplo e ficam só neste aparelho.", { ms: 7000 });
+  } catch (e) {
+    FluxoGuest.exit();
+    showToast("Não foi possível entrar sem conta: " + e.message, { error: true });
+  }
+}
+
 async function logoutUser() {
+  if (window.FluxoGuest) FluxoGuest.exit();
   clearToken();
   state.user = null; state.transactions = []; state.accounts = []; state.pluggyItems = [];
   state.investments = []; state.investHistory = []; state.customCategories = []; state.categoryOverrides = {};
@@ -2717,6 +2730,7 @@ document.addEventListener("DOMContentLoaded", () => {
   wire(() => {
     document.getElementById("btn-email-login").addEventListener("click", () => { setAuthMode("login"); openModal("modal-email"); });
     document.getElementById("link-create-account").addEventListener("click", (e) => { e.preventDefault(); setAuthMode("register"); openModal("modal-email"); });
+    document.getElementById("btn-guest").addEventListener("click", (e) => withLoading(e.currentTarget, enterGuest));
     document.getElementById("btn-do-email-login").addEventListener("click", (e) => withLoading(e.currentTarget, async () => {
       clearAuthError();
       const name = document.getElementById("input-name").value.trim();
@@ -3072,7 +3086,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   wire(async () => {
     const token = getToken();
-    if (!token) { showLogin(); return; }
+    if (!token && !(window.FluxoGuest && FluxoGuest.active())) { showLogin(); return; }
     const open = async () => {
       await refreshAll();
       applyTheme(state.preferences.theme || "light");
