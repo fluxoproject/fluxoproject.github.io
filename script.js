@@ -576,13 +576,35 @@ function showApp() {
   document.getElementById("screen-login").classList.remove("active");
   document.getElementById("main-app").classList.add("active");
   const last = localStorage.getItem("lastScreen");
-  navigateTo(last && NAV_DEFS[last] ? last : "inicio", { refresh: last && NAV_DEFS[last] && last !== "inicio" });
+  const start = screenFromUrl() || (last && NAV_DEFS[last] ? last : "inicio"); // o endereço (?tela=...) tem prioridade
+  navigateTo(start, { refresh: start !== "inicio", replaceUrl: true });
   setTimeout(checkReviewPrompt, 700);
   setTimeout(maybeAutoTutorial, 1800);
   setTimeout(() => autoSyncAll(), 2500);
 }
 const BRAND_HTML = '<span class="brand"><img class="brand-mark" src="icon-192.png" alt="" width="26" height="26"><span class="brand-name">Fluxo</span></span>';
-function navigateTo(screen, { refresh = true, swipeDir = null } = {}) {
+// Cada tela do app tem o próprio endereço: index.html?tela=investimentos, ?tela=planejamento etc.
+// (muda sem recarregar a página; o botão voltar do navegador também funciona)
+function screenFromUrl() {
+  const t = new URLSearchParams(location.search).get("tela");
+  return t && NAV_DEFS[t] ? t : null;
+}
+function syncUrl(screen, replace) {
+  try {
+    const p = new URLSearchParams(location.search);
+    if (p.get("tela") === screen) return;
+    p.set("tela", screen);
+    history[replace ? "replaceState" : "pushState"]({ tela: screen }, "", location.pathname + "?" + p.toString() + location.hash);
+  } catch (e) { /* sem suporte: o app funciona igual, só sem endereço por tela */ }
+}
+window.addEventListener("popstate", () => {
+  if (!state.user) return;
+  let t = new URLSearchParams(location.search).get("tela");
+  if (t === "categoria-detalhe" && !catDetalhe) t = "categorias";
+  if (!t || !(NAV_DEFS[t] || t === "categoria-detalhe" || t === "entradas-saidas")) t = "inicio";
+  navigateTo(t, { refresh: false, fromHistory: true });
+});
+function navigateTo(screen, { refresh = true, swipeDir = null, fromHistory = false, replaceUrl = false } = {}) {
   const remember = screen === "categoria-detalhe" ? "categorias" : screen;
   if (NAV_DEFS[remember]) localStorage.setItem("lastScreen", remember); // ao reabrir o app volta para onde você parou
   if (screen === "transacoes" && currentScreen !== "transacoes") txVisibleCount = TX_PAGE_SIZE;
@@ -590,6 +612,7 @@ function navigateTo(screen, { refresh = true, swipeDir = null } = {}) {
   if (screen === "planejamento" && currentScreen !== "planejamento") planMonth = null;
   if (screen !== currentScreen) flashLoader();
   currentScreen = screen;
+  if (!fromHistory) syncUrl(screen, replaceUrl);
   document.querySelectorAll(".content .screen").forEach(s => s.classList.remove("active", "swipe-in-left", "swipe-in-right"));
   const target = document.querySelector(`.screen[data-screen="${screen}"]`);
   if (target) {
