@@ -596,7 +596,7 @@ function screenFromUrl() {
 }
 function syncUrl(screen, replace) {
   try {
-    const path = screen === "inicio" ? "/" : "/" + (screen === "categoria-detalhe" ? "categorias" : screen);
+    const path = "/" + (screen === "categoria-detalhe" ? "categorias" : screen);
     const p = new URLSearchParams(location.search); p.delete("tela");
     const q = p.toString();
     const url = path + (q ? "?" + q : "") + location.hash;
