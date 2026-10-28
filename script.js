@@ -582,24 +582,31 @@ function showApp() {
   setTimeout(maybeAutoTutorial, 1800);
   setTimeout(() => autoSyncAll(), 2500);
 }
-const BRAND_HTML = '<span class="brand"><img class="brand-mark" src="icon-192.png" alt="" width="26" height="26"><span class="brand-name">Fluxo</span></span>';
-// Cada tela do app tem o próprio endereço: index.html?tela=investimentos, ?tela=planejamento etc.
+const BRAND_HTML = '<span class="brand"><img class="brand-mark" src="/icon-192.png" alt="" width="26" height="26"><span class="brand-name">Fluxo</span></span>';
+// Cada tela do app tem o próprio endereço, com barra e sem "?": fluxoproject.github.io/investimentos, /planejamento etc.
 // (muda sem recarregar a página; o botão voltar do navegador também funciona)
+function screenFromPath() {
+  const seg = location.pathname.replace(/index\.html$/, "").split("/").filter(Boolean)[0];
+  return seg || null;
+}
 function screenFromUrl() {
-  const t = new URLSearchParams(location.search).get("tela");
+  let t = screenFromPath();
+  if (!t) t = new URLSearchParams(location.search).get("tela"); // links antigos (?tela=...) ainda funcionam
   return t && NAV_DEFS[t] ? t : null;
 }
 function syncUrl(screen, replace) {
   try {
-    const p = new URLSearchParams(location.search);
-    if (p.get("tela") === screen) return;
-    p.set("tela", screen);
-    history[replace ? "replaceState" : "pushState"]({ tela: screen }, "", location.pathname + "?" + p.toString() + location.hash);
+    const path = screen === "inicio" ? "/" : "/" + (screen === "categoria-detalhe" ? "categorias" : screen);
+    const p = new URLSearchParams(location.search); p.delete("tela");
+    const q = p.toString();
+    const url = path + (q ? "?" + q : "") + location.hash;
+    if (location.pathname === path && !new URLSearchParams(location.search).has("tela")) return;
+    history[replace ? "replaceState" : "pushState"]({ tela: screen }, "", url);
   } catch (e) { /* sem suporte: o app funciona igual, só sem endereço por tela */ }
 }
 window.addEventListener("popstate", () => {
   if (!state.user) return;
-  let t = new URLSearchParams(location.search).get("tela");
+  let t = screenFromPath() || new URLSearchParams(location.search).get("tela");
   if (t === "categoria-detalhe" && !catDetalhe) t = "categorias";
   if (!t || !(NAV_DEFS[t] || t === "categoria-detalhe" || t === "entradas-saidas")) t = "inicio";
   navigateTo(t, { refresh: false, fromHistory: true });
@@ -2729,7 +2736,7 @@ initTheme();
 /* ---------- PWA: instalar no celular ---------- */
 let deferredInstall = null;
 const isStandalone = () => window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
-if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault(); deferredInstall = e;
   document.getElementById("btn-install")?.classList.remove("hidden");

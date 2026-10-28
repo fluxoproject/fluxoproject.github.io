@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5639243360908436" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>Fluxo: app de controle financeiro pessoal com Open Finance</title>
+<meta name="description" content="Conecte seus bancos pelo Open Finance e veja quanto entrou, quanto saiu e para onde vai seu dinheiro, com categorias, cartões e planejamento.">
+<meta name="google-adsense-account" content="ca-pub-5639243360908436">
+<link rel="canonical" href="https://fluxoproject.github.io/transacoes">
+<meta property="og:site_name" content="Fluxo">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fluxoproject.github.io/">
+<meta property="og:title" content="Fluxo: app de controle financeiro pessoal com Open Finance">
+<meta property="og:description" content="Conecte seus bancos pelo Open Finance e veja quanto entrou, quanto saiu e para onde vai seu dinheiro, com categorias, cartões e planejamento.">
+<meta property="og:image" content="https://fluxoproject.github.io/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo do Fluxo: controle financeiro pessoal com Open Finance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fluxo: app de controle financeiro pessoal com Open Finance">
+<meta name="twitter:description" content="Conecte seus bancos pelo Open Finance e veja quanto entrou, quanto saiu e para onde vai seu dinheiro, com categorias, cartões e planejamento.">
+<meta name="twitter:image" content="https://fluxoproject.github.io/og-image.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Fluxo","alternateName":"Fluxo Project","url":"https://fluxoproject.github.io/","inLanguage":"pt-BR"}</script>
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0A3C26">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Fluxo">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://cdn.pluggy.ai/pluggy-connect/latest/pluggy-connect.js"></script>
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <!-- ===================== LOGIN ===================== -->
+  <section class="screen screen-login active" id="screen-login">
+    <div class="login-bg" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i></div>
+    <div class="login-wrap">
+      <div class="login-logo">
+        <div class="login-mark-wrap">
+          <span class="login-halo"></span>
+          <img class="login-mark" src="/logo-mark.png" alt="" width="128" height="118">
+          <span class="login-shine"></span>
+        </div>
+        <img class="login-word" src="/logo-word.png" alt="Fluxo" width="150" height="41">
+        <h1 class="sr-only">Fluxo</h1>
+        <p class="login-tagline">Seu dinheiro, em movimento.</p>
+      </div>
+
+      <div class="login-actions">
+        <div id="google-btn-container" class="google-btn-container"></div>
+        <div class="login-or"><span>ou</span></div>
+        <button class="btn btn-outline" id="btn-email-login">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          Entrar com e-mail
+        </button>
+        <a href="#" class="link-create-account" id="link-create-account">Criar conta</a>
+        <button class="link-guest" id="btn-guest" type="button">Entrar sem conta</button>
+        <button class="btn-install hidden" id="btn-install" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          Instalar o app no celular
+        </button>
+        <p class="install-hint hidden" id="install-hint">No iPhone: toque em <b>Compartilhar</b> e depois em <b>Adicionar à Tela de Início</b>.</p>
+      </div>
+      <nav class="login-legal" aria-label="Informações do site">
+        <a href="/fluxo.html">Sobre o Fluxo</a>
+        <a href="/artigos.html">Artigos</a>
+        <a href="/privacidade.html">Privacidade</a>
+        <a href="/contato.html">Contato</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===================== EMAIL LOGIN FORM (modal) ===================== -->
+  <div class="modal-overlay" id="modal-email">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modal-email-title">Entrar com e-mail</h3>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="field-name-wrap">
+          <label>Nome</label>
+          <input type="text" id="input-name" placeholder="Seu nome">
+        </div>
+        <label>E-mail</label>
+        <input type="email" id="input-email" placeholder="voce@email.com">
+        <label>Senha</label>
+        <input type="password" id="input-password" placeholder="Sua senha">
+        <div class="form-error hidden" id="auth-error"></div>
+        <button class="btn btn-primary" id="btn-do-email-login">Entrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MAIN APP ===================== -->
+  <div class="main-app" id="main-app">
+
+    <!-- ---------- TOPBAR ---------- -->
+    <header class="topbar" id="topbar">
+      <div class="top-progress" id="screen-loader" aria-hidden="true"><i></i></div>
+      <button class="icon-btn back-btn hidden" id="btn-back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="topbar-title" id="topbar-title">Início</div>
+      <div class="topbar-actions">
+        <button class="icon-btn theme-toggle-btn" id="btn-theme-toggle" title="Alternar modo escuro">
+          <svg id="theme-icon-sun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
+          <svg id="theme-icon-moon" class="hidden" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.4A9 9 0 1111.6 3a7 7 0 009.4 9.4z"/></svg>
+        </button>
+        <button class="icon-btn avatar-btn" id="btn-profile">
+          <img id="avatar-img" class="avatar-img hidden" alt="">
+          <svg id="avatar-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="content" id="content">
+
+      <!-- ---------- DASHBOARD ---------- -->
+      <section class="screen screen-dashboard active" data-screen="inicio">
+        <section class="hero" aria-label="Saldo total">
+          <div class="hero-top">
+            <div class="hero-hello">
+              <p class="hero-brand">Fluxo</p>
+              <p class="greeting" id="greeting-text">Olá!</p>
+              <p class="hero-sub" id="balance-change">—</p>
+            </div>
+            <button class="eye-btn" id="btn-hide-values" type="button" title="Esconder valores" aria-label="Esconder valores">
+              <svg id="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg id="eye-closed" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l18 18M10.6 5.1A10 10 0 0112 5c6.4 0 10 7 10 7a17 17 0 01-3.2 4M6.6 6.6A17 17 0 002 12s3.6 7 10 7a10 10 0 004.4-1"/></svg>
+            </button>
+          </div>
+          <div class="hero-label">Saldo total</div>
+          <div class="hero-value" id="balance-total"><span class="cur">R$</span>0<span class="cents">,00</span></div>
+          <svg class="hero-flow" id="hero-flow" viewBox="0 0 320 70" preserveAspectRatio="none" aria-hidden="true"></svg>
+        </section>
+
+        <div class="flow-tiles">
+          <div class="flow-tile in card-clickable" id="btn-ver-entradas" role="button" tabindex="0">
+            <span class="flow-ico" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+            <span class="flow-txt"><span class="mini-label">Entradas</span><span class="mini-value" id="total-entradas">R$ 0,00</span></span>
+          </div>
+          <div class="flow-tile out card-clickable" id="btn-ver-saidas" role="button" tabindex="0">
+            <span class="flow-ico" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 7L7 17M16 17H7V8"/></svg></span>
+            <span class="flow-txt"><span class="mini-label">Saídas</span><span class="mini-value" id="total-saidas">R$ 0,00</span></span>
+          </div>
+        </div>
+        <div class="flow-bar" aria-hidden="true"><span id="flow-in"></span><span id="flow-out"></span></div>
+        <p class="screen-hint flow-hint">A barra mostra quanto do movimento foi entrada e quanto foi saída. Toque em um dos dois para ver a lista.</p>
+
+        <div class="filters-row">
+          <select id="filter-periodo"></select>
+          <select id="filter-banco"></select>
+        </div>
+
+        <div class="section-head">
+          <h3>Seus bancos</h3>
+          <a href="#" class="link-small" data-nav="bancos">Ver todos <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="banks-scroll" id="banks-scroll"></div>
+
+        <div class="cards-wrap hidden" id="cards-wrap">
+          <div class="section-head"><h3>Seus cartões</h3><span class="section-count" id="cards-count"></span></div>
+          <div id="cards-list"></div>
+        </div>
+
+      </section>
+
+      <!-- ---------- ENTRADAS / SAÍDAS (detalhe) ---------- -->
+      <section class="screen screen-entradas-saidas" data-screen="entradas-saidas">
+        <div class="es-summary in" id="es-summary"></div>
+        <div id="es-sort-slot"></div>
+        <div id="es-list-container"></div>
+      </section>
+
+      <!-- ---------- BANCOS ---------- -->
+      <section class="screen screen-bancos" data-screen="bancos">
+        <p class="subtext">Conecte seus bancos e acompanhe tudo em um só lugar.</p>
+
+        <div class="section-head"><h3>Conexão real (Open Finance)</h3></div>
+        <div class="card" style="margin-bottom:18px">
+          <p class="subtext" style="margin-bottom:12px">Conecte uma conta bancária de verdade via Pluggy. Você pode conectar contas de mais de um CPF.</p>
+          <div id="pluggy-items-list"></div>
+          <button class="btn btn-primary btn-add-inst" id="btn-pluggy-connect">+ Conectar banco real (Pluggy)</button>
+          <button class="btn btn-outline" id="btn-sync-all" style="margin-top:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 00-14.5-4M4 5v4h4M4 13a8 8 0 0014.5 4M20 19v-4h-4"/></svg>Sincronizar todos os bancos</button>
+        </div>
+
+      </section>
+
+      <!-- ---------- TRANSAÇÕES ---------- -->
+      <section class="screen screen-transacoes" data-screen="transacoes">
+        <p class="screen-hint">Toque numa transação para ver detalhes ou trocar a categoria.</p>
+        <div class="search-row">
+          <div class="search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="text" id="search-transacoes" placeholder="Buscar transações...">
+          </div>
+          <button class="icon-btn btn-filter-toggle" id="btn-toggle-filtros" title="Filtrar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+          </button>
+        </div>
+        <div id="tx-sort-slot"></div>
+        <div class="review-banner hidden" id="tx-review-banner"></div>
+        <div id="tx-list-container"></div>
+      </section>
+
+      <!-- ---------- CATEGORIAS (+ comparar meses) ---------- -->
+      <section class="screen screen-categorias" data-screen="categorias">
+        <div class="segmented" id="cat-mode">
+          <button class="seg-btn active" data-mode="cats">Categorias</button>
+          <button class="seg-btn" data-mode="comparar">Comparar meses</button>
+        </div>
+
+        <div id="cat-view">
+          <div class="month-nav" id="cat-month-nav">
+            <button type="button" class="month-arrow" id="cat-prev" aria-label="Mês anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <div class="month-label" id="cat-month-label">—</div>
+            <button type="button" class="month-arrow" id="cat-next" aria-label="Próximo mês"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+          <p class="screen-hint">Toque numa fatia do gráfico para ver o valor. Toque numa categoria para ver as transações dela.</p>
+          <div class="section-head">
+            <h3>Categorias</h3>
+            <a href="#" class="link-small" id="btn-nova-categoria">+ Nova categoria</a>
+          </div>
+          <div class="segmented" id="cat-segmented">
+            <button class="seg-btn active" data-seg="gastos">Gastos</button>
+            <button class="seg-btn" data-seg="ganhos">Ganhos</button>
+          </div>
+          <div class="card cat-chart-card">
+            <div class="donut-wrap"><canvas id="cat-donut" width="240" height="240" aria-label="Gráfico de categorias do mês"></canvas></div>
+            <div class="donut-legend" id="cat-legend"></div>
+          </div>
+          <div id="categorias-list"></div>
+        </div>
+
+        <div id="cat-comparar" class="hidden">
+          <p class="screen-hint">Escolha dois meses para ver a diferença, categoria por categoria.</p>
+          <div class="segmented" id="comp-tipo-seg">
+            <button class="seg-btn active" data-tipo="saida">Gastos</button>
+            <button class="seg-btn" data-tipo="entrada">Ganhos</button>
+          </div>
+          <div class="comp-selects">
+            <select id="comp-mes1" aria-label="Primeiro mês"></select>
+            <span class="vs-label">VS</span>
+            <select id="comp-mes2" aria-label="Segundo mês"></select>
+          </div>
+          <div class="card" id="comp-resultado"></div>
+        </div>
+      </section>
+
+      <!-- ---------- DETALHE DA CATEGORIA ---------- -->
+      <section class="screen screen-categoria-detalhe" data-screen="categoria-detalhe">
+        <div id="catdet-container"></div>
+      </section>
+
+      <!-- ---------- CRÉDITOS ---------- -->
+      <section class="screen screen-creditos" data-screen="creditos">
+        <div class="card credits-card">
+          <img src="/icon-192.png" alt="Fluxo" class="credits-logo" width="52" height="52">
+          <h2>Fluxo</h2>
+          <p class="screen-hint" style="margin:0">Seu dinheiro, em movimento.</p>
+          <div class="credit-line"><span>Criado por</span><strong>Eduardo</strong></div>
+          <div class="credit-line"><span>Desenvolvido com</span><strong>Claude (Anthropic)</strong></div>
+          <div class="credit-line"><span>Conexão com bancos</span><strong>Pluggy • Open Finance</strong></div>
+        </div>
+        <div class="section-head"><h3>Como usar o Fluxo</h3></div>
+        <div class="card howto">
+          <ol>
+            <li><b>Conecte seus bancos</b> em "Minhas instituições" (menu do perfil). O app só lê os dados, nunca guarda sua senha.</li>
+            <li><b>Início:</b> veja o saldo, quanto entrou e saiu, e seus cartões.</li>
+            <li><b>Transações:</b> toque numa transação para trocar a categoria.</li>
+            <li><b>Categorias:</b> veja os gastos e ganhos do mês (as setas trocam de mês) e toque numa categoria para ver as transações dela. Em "Comparar meses" você vê a diferença entre dois meses.</li>
+            <li><b>Investimentos:</b> acompanhe o que está aplicado e quanto rendeu.</li>
+            <li><b>Planejamento:</b> anote gastos futuros, marque como pago e defina metas por categoria.</li>
+            <li><b>Configurações:</b> mude a cor do app e a ordem das abas de baixo.</li>
+          </ol>
+        </div>
+        <button type="button" class="btn btn-primary tut-open" id="btn-tutorial">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v16H6.5A2.5 2.5 0 004 21.5v-16zM4 19.5A2.5 2.5 0 016.5 17H20"/></svg>
+          Tutorial completo do app
+        </button>
+      </section>
+
+      <!-- ---------- PLANEJAMENTO ---------- -->
+      <section class="screen screen-planejamento" data-screen="planejamento">
+        <div class="segmented" id="plan-mode">
+          <button class="seg-btn active" data-pmode="futuros">Gastos futuros</button>
+          <button class="seg-btn" data-pmode="metas">Metas por categoria</button>
+        </div>
+
+        <div id="plan-futuros">
+          <div class="month-nav" id="plan-month-nav">
+            <button type="button" class="month-arrow" id="plan-prev" aria-label="Mês anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <div class="month-label" id="plan-month-label">—</div>
+            <button type="button" class="month-arrow" id="plan-next" aria-label="Próximo mês"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+          <div class="pl-hero pos" id="plan-sum-resta-card">
+            <span class="pl-hero-label" id="plan-sum-resta-label">Sobra prevista do mês</span>
+            <span class="pl-hero-value" id="plan-sum-resta">R$ 0,00</span>
+            <div class="pl-hero-bar" aria-hidden="true"><i id="plan-bar-gasto"></i></div>
+            <div class="pl-hero-row">
+              <span class="pl-hero-stat"><i class="dot in"></i>Ganhos <b id="plan-sum-planejado">R$ 0,00</b></span>
+              <span class="pl-hero-stat"><i class="dot out"></i>Gastos <b id="plan-sum-gasto">R$ 0,00</b></span>
+            </div>
+          </div>
+          <div class="section-head">
+            <h3>Itens do mês</h3>
+            <button type="button" class="btn-novo-plan" id="btn-novo-planejado">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              Novo
+            </button>
+          </div>
+          <div id="plan-list"></div>
+        </div>
+
+        <div id="plan-metas" class="hidden">
+          <p class="screen-hint">Defina quanto quer gastar por categoria. Metas fixas valem todo mês; em "Meses específicos" você escolhe exatamente quais meses do ano (ex: só Janeiro e Setembro).</p>
+          <div id="metas-list"></div>
+        </div>
+      </section>
+
+      <!-- ---------- INVESTIMENTOS ---------- -->
+      <section class="screen screen-investimentos" data-screen="investimentos">
+        <div class="card card-balance">
+          <div class="card-balance-top"><span class="card-label">Total investido</span></div>
+          <div class="card-balance-value" id="inv-total">R$ 0,00</div>
+          <div class="card-balance-sub" id="inv-change">—</div>
+        </div>
+        <div class="inv-stats" id="inv-stats"></div>
+        <div id="inv-split"></div>
+        <p class="screen-hint">Rendeu = valor de hoje menos o que você aplicou.</p>
+        <div id="inv-list"></div>
+      </section>
+
+    </main>
+
+    <!-- ---------- BOTTOM NAV ---------- -->
+    <nav class="bottom-nav" id="bottom-nav"></nav>
+  </div>
+
+  <!-- ===================== TRANSAÇÃO DETALHE (modal) ===================== -->
+  <div class="modal-overlay" id="modal-detalhe">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Detalhe da transação</h3>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body" id="detalhe-body"></div>
+    </div>
+  </div>
+
+  <!-- ===================== ALTERAR CATEGORIA (modal) ===================== -->
+  <div class="modal-overlay" id="modal-categoria">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Alterar categoria</h3>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="cat-grid" id="cat-grid"></div>
+        <button class="btn btn-primary" id="btn-salvar-categoria">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== FILTRAR TRANSAÇÕES (modal) ===================== -->
+  <div class="modal-overlay" id="modal-filtros">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Filtrar transações</h3>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <label class="mini-lbl">Período</label>
+        <select id="tx-filter-periodo"><option value="all">Todo o período</option></select>
+        <label class="mini-lbl">Banco</label>
+        <select id="tx-filter-banco"><option value="all">Todos os bancos</option></select>
+        <label class="mini-lbl">Tipo</label>
+        <select id="tx-filter-tipo">
+          <option value="all">Todos os tipos</option>
+          <option value="entrada">Entradas</option>
+          <option value="saida">Saídas</option>
+        </select>
+        <label class="mini-lbl">Categoria</label>
+        <select id="tx-filter-categoria"><option value="all">Todas categorias</option></select>
+        <button class="btn btn-outline" id="btn-limpar-filtros" style="margin-top:10px">Limpar filtros</button>
+        <button class="btn btn-primary" id="btn-aplicar-filtros">Aplicar filtros</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== NOVA CATEGORIA (modal) ===================== -->
+  <div class="modal-overlay" id="modal-nova-categoria">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Nova categoria</h3>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <label>Emoji</label>
+        <div class="emoji-picker-row">
+          <input type="text" id="input-nova-cat-emoji" placeholder="🐾" maxlength="4">
+          <div class="emoji-suggestions" id="emoji-suggestions"></div>
+        </div>
+        <label>Nome</label>
+        <input type="text" id="input-nova-cat-nome" placeholder="Ex: Pets" maxlength="24">
+        <div class="form-error hidden" id="nova-cat-error"></div>
+        <button class="btn btn-primary" id="btn-salvar-nova-categoria">Criar categoria</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== REVISAR CATEGORIAS (modal) ===================== -->
+  <div class="modal-overlay" id="modal-revisao">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="revisao-title">Revisar categorias</h3>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body" id="revisao-body"></div>
+    </div>
+  </div>
+
+  <!-- ===================== NOVO ITEM DO PLANEJAMENTO (modal) ===================== -->
+  <div class="modal-overlay" id="modal-planejado">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="plan-modal-title">Novo item</h3>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <label>Descrição</label>
+        <input type="text" id="plan-nome" placeholder="Ex.: Celular Motorola" maxlength="80">
+        <label>Valor <span id="plan-valor-hint" class="hint-inline"></span></label>
+        <input type="text" inputmode="decimal" id="plan-valor" placeholder="0,00">
+        <label>Tipo</label>
+        <div class="segmented" id="plan-tipo-seg">
+          <button type="button" class="seg-btn active" data-tipo="saida">Gasto</button>
+          <button type="button" class="seg-btn" data-tipo="entrada">Ganho</button>
+        </div>
+        <label>Categoria</label>
+        <div class="cselect" id="plan-categoria-cselect">
+          <button type="button" class="cselect-trigger" id="plan-categoria-trigger">
+            <span class="cselect-current">Sem categoria</span>
+            <svg class="cselect-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cselect-panel hidden" id="plan-categoria-panel"></div>
+        </div>
+        <select id="plan-categoria" class="hidden-native-select" tabindex="-1" aria-hidden="true"><option value="">Sem categoria</option></select>
+
+        <label id="plan-subtitulo-label" class="hidden">Subtítulo <span class="hint-inline">(opcional)</span></label>
+        <div class="hidden" id="plan-subtitulo-wrap">
+          <div class="cselect" id="plan-subtitulo-cselect">
+            <button type="button" class="cselect-trigger" id="plan-subtitulo-trigger">
+              <span class="cselect-current">Sem subtítulo</span>
+              <svg class="cselect-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="cselect-panel hidden" id="plan-subtitulo-panel"></div>
+          </div>
+          <select id="plan-subtitulo" class="hidden-native-select" tabindex="-1" aria-hidden="true"><option value="">Sem subtítulo</option></select>
+        </div>
+        <label id="plan-mes-label">Quando</label>
+        <div class="wheel-row">
+          <div class="wheel-wrap">
+            <div class="wheel-col" id="wheel-dia"></div>
+            <div class="wheel-highlight-line"></div>
+          </div>
+          <div class="wheel-wrap wheel-wrap-wide">
+            <div class="wheel-col" id="wheel-mes"></div>
+            <div class="wheel-highlight-line"></div>
+          </div>
+          <div class="wheel-wrap">
+            <div class="wheel-col" id="wheel-ano"></div>
+            <div class="wheel-highlight-line"></div>
+          </div>
+        </div>
+        <div class="wheel-caption-row"><span>Dia</span><span>Mês</span><span>Ano</span></div>
+
+        <div id="plan-varios-wrap">
+          <label class="plan-checkbox-row">
+            <input type="checkbox" id="plan-varios-meses-check">
+            <span>Vários meses <span class="hint-inline">(repete esse gasto todo mês, a partir do mês acima)</span></span>
+          </label>
+          <div class="plan-qtd-row hidden" id="plan-qtd-row">
+            <span class="plan-qtd-label">Repetir por</span>
+            <button type="button" class="qtd-btn" id="plan-qtd-minus" aria-label="Menos meses">−</button>
+            <span class="qtd-value" id="plan-qtd-value">2</span>
+            <button type="button" class="qtd-btn" id="plan-qtd-plus" aria-label="Mais meses">+</button>
+            <span class="plan-qtd-label">meses</span>
+          </div>
+        </div>
+
+        <div class="plan-error hidden" id="plan-error"></div>
+        <button class="btn btn-primary" id="btn-salvar-planejado" style="margin-top:16px">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MARCAR COMO PAGO (modal) ===================== -->
+  <div class="modal-overlay" id="modal-marcar-pago">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Marcar como pago?</h3>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="del-card-name" id="pay-item-name"></p>
+        <p class="del-card-text">É só um aviso visual no planejamento deste mês. Não cria transação e não mexe no seu saldo real. Você pode desfazer quando quiser.</p>
+        <div class="del-sim-actions">
+          <button class="btn btn-primary" type="button" id="btn-confirmar-pago">Marcar como pago</button>
+          <button class="btn-link-small" type="button" data-close-modal>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== META DA CATEGORIA (modal) ===================== -->
+  <div class="modal-overlay" id="modal-meta">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="meta-modal-title">Meta</h3>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <label>Valor da meta (por mês)</label>
+        <input type="text" inputmode="decimal" id="meta-valor" placeholder="0,00">
+        <label>Vale para</label>
+        <div class="segmented" id="meta-tipo-seg">
+          <button type="button" class="seg-btn active" data-metatipo="fixo">Todo mês</button>
+          <button type="button" class="seg-btn" data-metatipo="especifico">Meses específicos</button>
+        </div>
+        <div class="month-check-grid hidden" id="meta-meses-grid"></div>
+        <div class="plan-error hidden" id="meta-error"></div>
+        <div class="del-sim-actions" style="margin-top:16px">
+          <button class="btn btn-primary" type="button" id="btn-salvar-meta">Salvar meta</button>
+          <button class="btn btn-danger hidden" type="button" id="btn-remover-meta">Remover meta</button>
+          <button class="btn-link-small" type="button" data-close-modal>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== APAGAR TODOS OS PLANEJAMENTOS (modal; aberto pelo botão escondido) ===================== -->
+  <div class="modal-overlay" id="modal-apagar-planos">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Apagar todos os planejamentos?</h3>
+        <button class="icon-btn" data-close-modal aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="del-card-text" id="apagar-planos-text"></p>
+        <div class="plan-error hidden" id="apagar-planos-error"></div>
+        <div class="del-sim-actions" style="margin-top:16px">
+          <button class="btn btn-danger" type="button" id="btn-confirmar-apagar-planos">Apagar tudo</button>
+          <button class="btn-link-small" type="button" data-close-modal>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== EXCLUIR TRANSAÇÕES PARECIDAS (modal) ===================== -->
+  <div class="modal-overlay" id="modal-excluir-parecidas">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Excluir parecidas também?</h3>
+        <button class="icon-btn" data-close-modal aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="del-card-name" id="del-sim-name"></p>
+        <p class="del-card-text" id="del-sim-text"></p>
+        <div class="del-sim-actions">
+          <button class="btn btn-danger" type="button" id="btn-del-sim-all">Excluir todas e as próximas</button>
+          <button class="btn btn-outline" type="button" id="btn-del-sim-one">Só esta</button>
+          <button class="btn-link-small" type="button" data-close-modal>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== EXCLUIR CARTÃO (modal) ===================== -->
+  <div class="modal-overlay" id="modal-excluir-cartao">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Excluir cartão?</h3>
+        <button class="icon-btn" data-close-modal aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="del-card-name" id="del-card-name"></p>
+        <p class="del-card-text">O cartão some do app junto com as compras dele e não volta nas próximas sincronizações. Seu banco não é afetado.</p>
+        <div class="del-card-actions">
+          <button class="btn btn-outline" type="button" data-close-modal>Cancelar</button>
+          <button class="btn btn-danger" type="button" id="btn-confirmar-excluir-cartao">Excluir cartão</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PLUGGY: PEDIR CPF (modal) ===================== -->
+  <div class="modal-overlay" id="modal-pluggy-cpf">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Conectar banco real</h3>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="subtext" style="margin-bottom:12px">Informe o CPF do titular da conta que você vai conectar. Você pode repetir esse passo depois com outro CPF (ex: de um familiar).</p>
+        <label>CPF</label>
+        <input type="text" id="input-pluggy-cpf" placeholder="000.000.000-00" maxlength="14">
+        <div class="form-error hidden" id="pluggy-error"></div>
+        <button class="btn btn-primary" id="btn-pluggy-continuar" style="margin-top:14px">Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== CONFIGURAÇÕES (modal) ===================== -->
+  <div class="modal-overlay" id="modal-configuracoes">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Configurações</h3>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <label>Nome</label>
+        <input type="text" id="cfg-nome" disabled>
+        <label>E-mail</label>
+        <input type="text" id="cfg-email" disabled>
+        <label>Moeda</label>
+        <select id="cfg-moeda" disabled>
+          <option value="BRL">Real (R$)</option>
+        </select>
+        <label>Cor do app</label>
+        <div class="accent-picker" id="accent-picker"></div>
+        <label>Abas de baixo <span class="cfg-hint">arraste pela alça para mudar a ordem • toque no olho para esconder</span></label>
+        <ul class="nav-editor" id="nav-editor"></ul>
+        <button type="button" class="btn-link-small" id="btn-nav-reset">Restaurar padrão</button>
+        <label>Nomes bloqueados <span class="cfg-hint">transações com esses nomes não entram mais no app. Toque em Desbloquear para elas voltarem.</span></label>
+        <ul class="blocked-list" id="blocked-list"><li class="blocked-empty">Nenhum nome bloqueado.</li></ul>
+        <label class="checkbox-row" style="margin-top:14px">
+          <input type="checkbox" id="cfg-modo-escuro"> Modo escuro
+        </label>
+        <button class="btn btn-primary" id="btn-salvar-config" style="margin-top:16px">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== TUTORIAL (modal) ===================== -->
+  <div class="modal-overlay" id="modal-tutorial">
+    <div class="modal-card tut-card">
+      <div class="modal-head">
+        <h3>Tutorial do Fluxo</h3>
+        <button class="icon-btn" data-close-modal aria-label="Fechar">&times;</button>
+      </div>
+      <div class="segmented tut-tabs" id="tut-tabs">
+        <button type="button" class="seg-btn active" data-tuttab="passos">Passo a passo</button>
+        <button type="button" class="seg-btn" data-tuttab="guia">Guia</button>
+      </div>
+      <div class="modal-body">
+        <div id="tut-passos"></div>
+        <div id="tut-guia" class="hidden"></div>
+      </div>
+  </div>
+  </div>
+
+  <!-- ===================== PERFIL (modal, estilo menu lateral) ===================== -->
+  <div class="modal-overlay" id="modal-perfil">
+    <div class="modal-card modal-card-menu">
+      <div class="modal-head">
+        <div class="profile-row">
+          <img id="perfil-avatar" class="avatar-img-lg hidden" alt="">
+          <div id="perfil-avatar-icon" class="avatar-icon-lg">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+          </div>
+          <div>
+            <div class="profile-name" id="perfil-nome">—</div>
+            <div class="profile-email" id="perfil-email">—</div>
+          </div>
+        </div>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <nav class="profile-menu">
+          <button class="profile-menu-item" data-nav="inicio" data-close-modal>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+            Início
+          </button>
+          <button class="profile-menu-item" data-nav="bancos" data-close-modal>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M4 21V9l8-6 8 6v12M9 21V12h6v9"/></svg>
+            Minhas instituições
+          </button>
+          <button class="profile-menu-item" data-nav="transacoes" data-close-modal>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 8h13M7 8l3-3M7 8l3 3M17 16H4M17 16l-3-3M17 16l-3 3"/></svg>
+            Transações
+          </button>
+          <button class="profile-menu-item" data-nav="categorias" data-close-modal>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>
+            Categorias
+          </button>
+          <button class="profile-menu-item" data-nav="planejamento" data-close-modal>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+            Planejamento
+          </button>
+          <button class="profile-menu-item" data-nav="investimentos" data-close-modal>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>
+            Investimentos
+          </button>
+          <button class="profile-menu-item" data-nav="creditos" data-close-modal>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.6-9.3-9A5.2 5.2 0 0112 6a5.2 5.2 0 019.3 6c-2.3 4.4-9.3 9-9.3 9z"/></svg>
+            Créditos
+          </button>
+          <div class="profile-menu-sep"></div>
+          <button class="profile-menu-item" id="btn-configuracoes">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            Configurações
+          </button>
+          <button class="profile-menu-item" id="btn-ajuda">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 015 .5c0 1.5-2 1.7-2 3.2"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg>
+            Ajuda
+          </button>
+          <button class="profile-menu-item danger" id="btn-logout">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+            Sair
+          </button>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+</div>
+
+<script>window.FINANHUB_API_BASE = "https://app-financas-8xz9.onrender.com/api";</script>
+<script src="/guest.js"></script>
+<script src="/script.js"></script>
+</body>
+</html>
