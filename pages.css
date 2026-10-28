@@ -171,3 +171,17 @@ html.js .reveal.in{opacity:1;transform:none}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   html.js .reveal{opacity:1;transform:none}
 }
+
+/* ---------- newsletter (MailerLite) ---------- */
+.newsletter{margin:36px 0 12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;box-shadow:var(--shadow)}
+.newsletter::before{content:"Receba novos artigos no e-mail";display:block;font-size:22px;font-weight:700;color:var(--text);margin:0 0 4px}
+.newsletter .ml-form-embedContainer,.newsletter .ml-form-embedWrapper,.newsletter .ml-form-embedBody,.newsletter .ml-form-embedContent,.newsletter .ml-form-embedWrapper.embedForm{background:transparent!important;box-shadow:none!important;border:0!important;padding:0!important;margin:0!important;max-width:none!important;width:100%!important}
+.newsletter .ml-form-embedContent h4{display:none!important}
+.newsletter .ml-form-embedContent p,.newsletter .ml-form-embedContent{color:var(--muted)!important;font-family:inherit!important;font-size:16px!important}
+.newsletter .ml-form-embedBody .ml-form-embedContent{margin:0 0 14px!important}
+.newsletter input[type=email],.newsletter input[type=text]{background:var(--bg)!important;color:var(--text)!important;border:1px solid var(--line)!important;border-radius:10px!important;padding:12px 14px!important;height:auto!important;font-family:inherit!important}
+.newsletter input::placeholder{color:var(--muted)!important}
+.newsletter .ml-form-embedSubmit button.primary{background:var(--brand)!important;color:#fff!important;border:0!important;border-radius:999px!important;padding:12px 20px!important;height:auto!important;font-weight:700!important;font-family:inherit!important}
+.newsletter .ml-form-embedSubmit button.primary:hover{filter:brightness(1.08)}
+.newsletter label,.newsletter .label-description,.newsletter .ml-form-embedPermissions *{color:var(--muted)!important;font-family:inherit!important}
+.newsletter .ml-form-successContent h4,.newsletter .ml-form-successContent p{color:var(--text)!important;display:block!important}
