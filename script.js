@@ -1,5 +1,5 @@
 /* ============================================================
-   Fluxo — front-end
+   FluxoCentral — front-end
    Agora conectado a um backend real (Node + Express + SQLite).
    Só o token de login fica no localStorage; todo o resto (perfil,
    saldo, bancos, transações, preferências) vive no banco de dados.
@@ -582,7 +582,7 @@ function showApp() {
   setTimeout(maybeAutoTutorial, 1800);
   setTimeout(() => autoSyncAll(), 2500);
 }
-const BRAND_HTML = '<span class="brand"><img class="brand-mark" src="/icon-192.png" alt="" width="26" height="26"><span class="brand-name">Fluxo</span></span>';
+const BRAND_HTML = '<span class="brand"><img class="brand-mark" src="/icon-192.png" alt="" width="26" height="26"><span class="brand-name">FluxoCentral</span></span>';
 // Cada tela do app tem o próprio endereço, com barra e sem "?": fluxoproject.github.io/investimentos, /planejamento etc.
 // (muda sem recarregar a página; o botão voltar do navegador também funciona)
 function screenFromPath() {
@@ -2728,7 +2728,7 @@ async function removePluggyItem(id) {
    EVENT WIRING
    ============================================================ */
 function wire(fn, label) {
-  try { fn(); } catch (err) { console.error(`Fluxo: falha ao configurar "${label}"`, err); }
+  try { fn(); } catch (err) { console.error(`FluxoCentral: falha ao configurar "${label}"`, err); }
 }
 
 initTheme();
@@ -3301,11 +3301,11 @@ window.addEventListener("focus", () => setTimeout(syncCheck, 300));
    TUTORIAL DO APP
    - "Passo a passo": telas que você avança (abre sozinho na 1ª vez).
    - "Guia": seções que abrem e fecham, para consultar quando quiser.
-   Botão em Créditos › Como usar o Fluxo.
+   Botão em Créditos › Como usar o FluxoCentral.
    ============================================================ */
 const TUT_KEY = "fluxo_tutorial_visto";
 const TUT_STEPS = [
-  { ico: "👋", t: "Bem-vindo ao Fluxo", p: "Seu dinheiro, em movimento. Em poucos passos você vê como o app junta seus bancos, organiza seus gastos e ajuda a planejar o mês.",
+  { ico: "👋", t: "Bem-vindo ao FluxoCentral", p: "Seu dinheiro, em movimento. Em poucos passos você vê como o app junta seus bancos, organiza seus gastos e ajuda a planejar o mês.",
     b: ["Abas de baixo: Início, Transações, Investimentos, Categorias e Planejamento", "Deslize para os lados para trocar de aba", "Você revê este tutorial quando quiser em Créditos"] },
   { ico: "🏦", t: "Conecte seus bancos", p: "Toque na sua foto (canto de cima) e abra Minhas instituições.",
     b: ["Toque em Conectar banco real (Pluggy) e siga os passos do banco", "O app só lê os dados: nunca guarda a sua senha", "Use Sincronizar todos os bancos para buscar novidades", "Dá para conectar contas de mais de um CPF"] },

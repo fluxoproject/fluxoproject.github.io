@@ -1692,3 +1692,54 @@ button, [role="button"]{-webkit-tap-highlight-color:transparent;}
 .login-legal{margin-top:26px; display:flex; flex-wrap:wrap; justify-content:center; gap:6px 16px; font-size:12.5px; animation:fadeUp .9s cubic-bezier(.22,1,.36,1) .95s both;}
 .login-legal a{color:rgba(220,252,231,.72); text-decoration:underline; text-underline-offset:3px;}
 .login-legal a:hover, .login-legal a:focus-visible{color:#bbf7d0;}
+
+
+/* ============================================================
+   LOGIN EM DUAS COLUNAS (computador) e visual da marca FluxoCentral
+   ============================================================ */
+/* a tela de login ocupa a janela inteira; o app logado continua na coluna estreita */
+.app:has(.screen-login.active){max-width:none; background:#021a10;}
+.login-layout{position:relative; z-index:1; width:100%; max-width:1120px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:40px;}
+.screen-login .login-logo .login-word-text{margin-top:20px; font-size:36px; line-height:1.1; font-weight:800; letter-spacing:-1px; color:#f0fff5; animation:fadeUp 1s cubic-bezier(.22,1,.36,1) .3s both;}
+.screen-login .login-logo .login-word-text b{font-weight:500; color:#86efac;}
+.login-aside{width:100%; max-width:420px; text-align:left; color:rgba(232,255,240,.86); padding-bottom:12px;}
+.la-kicker{font-size:12px; font-weight:700; letter-spacing:.9px; text-transform:uppercase; color:#86efac;}
+.la-title{margin:10px 0 12px; font-size:22px; line-height:1.25; font-weight:800; letter-spacing:-.4px; color:#f0fff5;}
+.la-text{font-size:14.5px; line-height:1.7; margin-bottom:16px;}
+.la-points{display:none; list-style:none; margin:0 0 22px; padding:0;}
+.la-points li{position:relative; padding-left:26px; margin-bottom:12px; font-size:15.5px; line-height:1.55;}
+.la-points li::before{content:""; position:absolute; left:2px; top:.5em; width:9px; height:9px; border-radius:50%; background:#4ade80; box-shadow:0 0 0 4px rgba(74,222,128,.18);}
+.la-links{border-top:1px solid rgba(220,252,231,.16); padding-top:18px;}
+.la-links-title{font-size:12px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:rgba(220,252,231,.6); margin-bottom:10px;}
+.la-links a{display:block; padding:8px 0; font-size:14.5px; color:#d9fbe5; text-decoration:none; border-bottom:1px solid rgba(220,252,231,.08);}
+.la-links a:hover,.la-links a:focus-visible{color:#fff; padding-left:4px;}
+.la-links a{transition:padding .2s ease, color .2s ease;}
+.la-links a.la-all{color:#86efac; font-weight:700; border-bottom:0;}
+
+@media (min-width:960px){
+  .screen-login{padding:48px 56px;}
+  .login-layout{flex-direction:row; align-items:center; justify-content:space-between; gap:88px;}
+  .login-aside{order:1; flex:1; max-width:520px; padding-bottom:0;}
+  .login-wrap{order:2; flex:none; width:440px; max-width:440px; padding:44px 40px 32px; border-radius:30px;
+    background:linear-gradient(160deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+    border:1px solid rgba(220,252,231,.18); box-shadow:0 30px 80px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.12);
+    -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px);}
+  .la-kicker{font-size:13px;}
+  .la-title{font-size:clamp(36px,3.6vw,52px); line-height:1.08; letter-spacing:-1.4px; margin:16px 0 20px;}
+  .la-text{font-size:18px; line-height:1.7; margin-bottom:28px; max-width:480px;}
+  .la-points{display:block;}
+  .la-links{max-width:480px;}
+  .screen-login .login-logo{margin-bottom:28px;}
+  .login-mark-wrap{width:104px; height:96px;}
+  .login-halo{width:160px; height:160px; margin:-80px 0 0 -80px;}
+}
+@media (min-width:960px) and (max-height:760px){
+  .login-wrap{padding:30px 36px 24px;}
+  .login-mark-wrap{width:84px; height:78px;}
+  .la-points{display:none;}
+}
+@media (max-width:959px){
+  .screen-login{justify-content:flex-start; padding-top:calc(44px + env(safe-area-inset-top));}
+  .login-wrap{margin:0 auto;}
+  .login-aside{margin:0 auto;}
+}
